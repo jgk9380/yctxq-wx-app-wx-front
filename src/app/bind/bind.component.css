@@ -1,0 +1,39 @@
+
+#headImg {
+  width: 100px;
+  height: 100px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.container-fluid{
+  color: black;
+  font-size: 1.3em;
+  background-color: antiquewhite;
+  height: 100vh;
+  /*width: 100vw;*/
+}
+/*body{*/
+  /*background-color: antiquewhite;*/
+/*}*/
+input,label{
+  color: #091130;
+}
+
+input{
+  border: 1px solid blue;
+}
+
+form{
+  margin-top: 0.5em;
+  padding-bottom: .5em;
+  padding-top: .5em;
+}
+
+img{
+  display: block;
+  max-width: 100%;
+  height: auto !important;
+}
+
+
+

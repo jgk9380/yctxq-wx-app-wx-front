@@ -1,0 +1,109 @@
+<div class="container-fluid article" *ngIf="wxArticle">
+  <toaster-container [toasterconfig]="toasterConfig"></toaster-container>
+  <h2 class="title" [innerHtml]="wxArticle.title"></h2>
+  <span class="second-title">{{getDate()|date:"yyyy-MM-dd "}}</span>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <span class="second-title">盐城通信圈</span>
+  <p></p>
+  <div [innerHtml]="wxArticle.content "></div>
+
+  <div class="row">
+    <div class="col-xs-5 ">
+      <img class="qrCode" [src]="qrCodeUrl"/>
+      <span class="qrTitle">免费体验<br/>“腾讯王卡”</span>
+    </div>
+
+    <div class="col-xs-5 col-xs-offset-1 ">
+      <img class="qrCode" [src]="wxQrCodeUrl"/>
+      <span class="qrTitle">更多通信知识<br/>尽在'盐城通信圈'，</span>
+      <!--{{wxQrCodeUrl}}-->
+    </div>
+</div>
+
+  <br/>  <br/>
+  <div id="footer" class="row">
+    <!--<div class="col-xs-3">-->
+    <!--<input id="replay-input" icon="fa-edit" pInputText   type="text" (focus)="showReplyDialog()" placeholder="写评论..." size="8em">-->
+    <!--<span class=" glyphicon glyphicon-edit"></span>-->
+    <!--<span>{{wxArticle?.replyCount||0}}</span>-->
+    <!--</div>-->
+    <div class="col-xs-4 ">
+      <span >阅读:{{wxArticle.readCount||0}}</span>
+    </div>
+    <div class="col-xs-1 col-xs-offset-1"> <!--收藏-->
+      <span class="fa fa-star-o"  *ngIf="!articleOperate.favorite"   (click)="favriteArticle()" >{{wxArticle?.favoriteCount||0}}</span>
+      <span class="fa fa-star"  *ngIf="articleOperate.favorite"   (click)="favriteArticle()">{{wxArticle?.favoriteCount}}</span>
+    </div>
+    <div class="col-xs-1 col-xs-offset-1 "><!--点赞-->
+      <span class="fa fa-thumbs-o-up" *ngIf="!articleOperate.like"  (click)="likeArticle()">{{wxArticle?.likeCount||0}}</span>
+      <span class="fa fa-thumbs-up"     *ngIf="articleOperate.like"   (click)="likeArticle()" >{{wxArticle?.likeCount}}</span>
+    </div>
+    <!--<div class="col-xs-1 col-xs-offset-1">        &lt;!&ndash;讨厌&ndash;&gt;-->
+    <!--<span  *ngIf="!articleOperate.hate" class="fa fa-thumbs-o-down" (click)="hateArticle()">{{wxArticle?.hateCount||0}}</span>-->
+    <!--<span *ngIf="articleOperate.hate"  class="fa fa-thumbs-down" (click)="hateArticle()">{{wxArticle?.hateCount}}</span>-->
+    <!--</div>-->
+    <div class="col-xs-1 col-xs-offset-1">   <!--分享-->
+      <span class="glyphicon glyphicon-share">{{wxArticle?.shareCount||0}}</span>
+    </div>
+  </div>
+  <br/>
+</div>
+
+<!--<div class="navbar navbar-default navbar-fixed-bottom"  *ngIf="wxArticle">-->
+<!--<div class="navbar navbar-default "  *ngIf="wxArticle">-->
+  <!--<div class="container" *ngIf="wxArticle">-->
+    <!--<div id="footer" class="row">-->
+      <!--&lt;!&ndash;<div class="col-xs-3">&ndash;&gt;-->
+        <!--&lt;!&ndash;<input id="replay-input" icon="fa-edit" pInputText   type="text" (focus)="showReplyDialog()" placeholder="写评论..." size="8em">&ndash;&gt;-->
+        <!--&lt;!&ndash;<span class=" glyphicon glyphicon-edit"></span>&ndash;&gt;-->
+        <!--&lt;!&ndash;<span>{{wxArticle?.replyCount||0}}</span>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--<div class="col-xs-4 ">-->
+        <!--<span >阅读数：{{wxArticle.readCount||0}}</span>-->
+      <!--</div>-->
+      <!--<div class="col-xs-1 col-xs-offset-1"> &lt;!&ndash;收藏&ndash;&gt;-->
+        <!--<span class="fa fa-star-o"  *ngIf="!articleOperate.favorite"   (click)="favriteArticle()" >{{wxArticle?.favoriteCount||0}}</span>-->
+        <!--<span class="fa fa-star"  *ngIf="articleOperate.favorite"   (click)="favriteArticle()">{{wxArticle?.favoriteCount}}</span>-->
+      <!--</div>-->
+      <!--<div class="col-xs-1 col-xs-offset-1 ">&lt;!&ndash;点赞&ndash;&gt;-->
+        <!--<span class="fa fa-thumbs-o-up" *ngIf="!articleOperate.like"  (click)="likeArticle()">{{wxArticle?.likeCount||0}}</span>-->
+        <!--<span class="fa fa-thumbs-up"     *ngIf="articleOperate.like"   (click)="likeArticle()" >{{wxArticle?.likeCount}}</span>-->
+      <!--</div>-->
+      <!--&lt;!&ndash;<div class="col-xs-1 col-xs-offset-1">        &lt;!&ndash;讨厌&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<span  *ngIf="!articleOperate.hate" class="fa fa-thumbs-o-down" (click)="hateArticle()">{{wxArticle?.hateCount||0}}</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;<span *ngIf="articleOperate.hate"  class="fa fa-thumbs-down" (click)="hateArticle()">{{wxArticle?.hateCount}}</span>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--<div class="col-xs-1 col-xs-offset-1">   &lt;!&ndash;分享&ndash;&gt;-->
+        <!--<span class="glyphicon glyphicon-share">{{wxArticle?.shareCount||0}}</span>-->
+      <!--</div>-->
+
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<p-dialog header="评论" [(visible)]="inputDialogShowed" modal="modal" width="300" [responsive]="true" [closable]="true">
+  <textarea rows="4" cols="30"  placeholder=" 评论内容..." pInputTextarea></textarea>
+  <p-footer>
+    <button type="button" pButton icon="fa-check" (click)="inputDialogShowed=false" label="提交"></button>
+  </p-footer>
+</p-dialog>
+
+<!--<p>wxqr={{wxQrCodeUrl|json}}</p>-->
+<!--<p>qr={{qrCodeUrl}}</p>-->
+<!--<p>imgUrl={{imgUrl}}</p>-->
+<!--<div style="text-align:center">-->
+  <!--<p> 我是一个喜欢图标&nbsp;&nbsp;<span class="glyphicon glyphicon-heart"></span></p >-->
+  <!--<p> 我是一个空心图标&nbsp;&nbsp;<span class="glyphicon glyphicon-heart-empty"></span></p >-->
+  <!--<br>-->
+  <!--<p> 我是一个收藏图标&nbsp;&nbsp;<span class="glyphicon glyphicon-star"></span></p >-->
+  <!--<p> 我是一个未收藏图标&nbsp;&nbsp;<span class="glyphicon glyphicon-star-empty"></span></p >-->
+  <!--<br>-->
+  <!--<p> 我是一个已扫码人数图标&nbsp;&nbsp;<span class="glyphicon glyphicon-qrcode"></span></p >-->
+  <!--<p> 我是一个check图标&nbsp;&nbsp;<span class="glyphicon glyphicon-check"></span></p >-->
+  <!--<p> 我是一个分享图标&nbsp;&nbsp;<span class="glyphicon glyphicon-share"></span></p >-->
+  <!--<p> 我是一个SEE图标&nbsp;&nbsp;<span class="glyphicon glyphicon-eye-open"></span></p >-->
+  <!--&lt;!&ndash;<p>	我是一个已读图标&nbsp;&nbsp;<span class="glyphicons glyphicons-eye-plus"></span></p >&ndash;&gt;-->
+<!--</div>-->
+<!--{{wxArticle|json}}-->
+<!--<br><br><br><br>-->
+

@@ -1,0 +1,21 @@
+.titleImg{
+  height: 3em;
+  width: 3em;
+}
+
+.second-title{
+  color: #437bff;
+  font-size: 1.2em;
+}
+
+ul{
+  list-style-type: none;
+}
+
+li{
+  margin-top:0.5em ;
+}
+.container-fluid{
+  font-size: 1.2em;
+  margin-left: -2em;
+}

@@ -1,0 +1,21 @@
+ul {
+  width: 900px;
+  height: 200px;
+}
+
+li {
+  /*width: 200px;*/
+  /*height: 200px;*/
+  margin: 1px auto;
+  float: left;
+  list-style-type: none
+}
+
+.qrCode{
+  width: 200px;
+  height: 200px;
+}
+.qrHint{
+  width: 600px;
+  height: 200px;
+}

@@ -1,0 +1,41 @@
+
+@import url('../node_modules/primeng/resources/themes/omega/theme.css');
+@import url('../node_modules/primeng/resources/primeng.min.css');
+/*!*一套绝佳的图标字体库和CSS框架:awesome*!*/
+@import url('../node_modules/font-awesome/css/font-awesome.min.css');
+@import url("../node_modules/angular2-toaster/toaster.css");
+@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
+
+
+
+
+/* TODO: this should really be in the component's CSS file, but it doesn't seem to apply to the PrimeNG data table properly there */
+.checking-row {
+  /* TODO: first try this without '!important', but you might need it */
+  color: #ff0000;
+  /*background-color: #1b5f85;*/
+}
+
+.checked-row {
+  /* TODO: first try this without '!important', but you might need it */
+  color: #2f35ff;
+  /*background-color: #1b5f85;*/
+}
+
+
+/*html,body{*/
+    /*margin:0px;*/
+  /*padding: 0px;*/
+  /*!*background-color: antiquewhite;*!*/
+/*}*/
+
+
+img{
+  display: block;
+  max-width: 100%;
+  height: auto !important;
+}
+
+body{
+
+}

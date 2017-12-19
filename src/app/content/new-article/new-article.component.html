@@ -1,0 +1,89 @@
+<div class="container-fluid article" *ngIf="wxArticle">
+  <toaster-container [toasterconfig]="toasterConfig"></toaster-container>
+  <h2 class="title" [innerHtml]="wxArticle.title"></h2>
+  <span class="second-title">{{getDate()|date:"yyyy-MM-dd "}}</span>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <span class="second-title">盐城通信圈</span>
+  <p></p>
+  <div [innerHtml]="wxArticle.content "></div>
+
+  <!--<div class="row">-->
+  <!--<div class="col-xs-4 ">-->
+  <!--<img class="qrCode" [src]="qrCodeUrl" />-->
+  <!--</div>-->
+  <!--<div class="col-xs-6 ">-->
+  <!--<img class="qrCodeHint" src="./dwk-hint.jpg" />-->
+  <!--</div>-->
+
+  <!--<div class="col-xs-12">-->
+  <ul>
+    <li><img class="qrCode" [src]="qrCodeUrl"/></li>
+    <li><img class="qrHint" src="./dwk-hint.jpg"/></li>
+    <li style="clear: both"></li>
+  </ul>
+  <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+  <!--<div class="col-xs-4  ">-->
+  <!--<img class="qrCode" [src]="wxQrCodeUrl"/>-->
+  <!--</div>-->
+  <!--<div class="col-xs-6 ">-->
+  <!--<img class="qrCodeHint" src="./perm-hint.jpg"/>-->
+  <!--</div>-->
+  <br/>
+  <br/>
+
+  <ul>
+    <li><img class="qrCode" [src]="wxQrCodeUrl"/></li>
+    <li><img class="qrHint" src="./perm-hint.jpg"/></li>
+    <li style="clear: both"></li>
+  </ul>
+  <!--</div>-->
+  <!--</div>-->
+
+  <br/>
+
+  <br/>
+
+  <div class="row" *ngIf="sharer">
+    <div class="col-xs-12 ">
+      <span style="color:red;">此文由‘{{sharer.nickname}}’自‘盐城通信圈’分享</span>
+    </div>
+  </div>
+
+  <br/>
+
+  <div id="footer" class="row">
+    <!--<div class="col-xs-3">-->
+    <!--<input id="replay-input" icon="fa-edit" pInputText   type="text" (focus)="showReplyDialog()" placeholder="写评论..." size="8em">-->
+    <!--<span class=" glyphicon glyphicon-edit"></span>-->
+    <!--<span>{{wxArticle?.replyCount||0}}</span>-->
+    <!--</div>-->
+    <div class="col-xs-4 ">
+      <span>阅读:{{wxArticle.readCount||0}}</span>
+    </div>
+    <div class="col-xs-1 col-xs-offset-1"> <!--收藏-->
+      <span class="fa fa-star-o" *ngIf="!articleOperate.favorite" (click)="favriteArticle()">{{wxArticle?.favoriteCount||0}}</span>
+      <span class="fa fa-star" *ngIf="articleOperate.favorite"
+            (click)="favriteArticle()">{{wxArticle?.favoriteCount}}</span>
+    </div>
+    <div class="col-xs-1 col-xs-offset-1 "><!--点赞-->
+      <span class="fa fa-thumbs-o-up" *ngIf="!articleOperate.like"
+            (click)="likeArticle()">{{wxArticle?.likeCount||0}}</span>
+      <span class="fa fa-thumbs-up" *ngIf="articleOperate.like" (click)="likeArticle()">{{wxArticle?.likeCount}}</span>
+    </div>
+    <div class="col-xs-1 col-xs-offset-1">   <!--分享-->
+      <span class="glyphicon glyphicon-share">{{wxArticle?.shareCount||0}}</span>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog header="评论" [(visible)]="inputDialogShowed" modal="modal" width="300" [responsive]="true" [closable]="true">
+  <textarea rows="4" cols="30" placeholder=" 评论内容..." pInputTextarea></textarea>
+  <p-footer>
+    <button type="button" pButton icon="fa-check" (click)="inputDialogShowed=false" label="提交"></button>
+  </p-footer>
+</p-dialog>
+

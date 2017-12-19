@@ -1,0 +1,21 @@
+<!--<h3 class="text-center">盐城通信圈</h3>-->
+<!--{{wxCodeService.code}}-->
+<span class="second-title">{{getDate()|date:"yyyy-MM-dd "}}</span>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="second-title">{{wxArticleService.listTitle}}</span>
+<div class="container-fluid">
+  <ul>
+    <li *ngFor="let article of wxArticleService.articleList">
+      <div class="row">
+        <div class="col-offset-xs-1 col-xs-9">
+          <span class="title" (click)="clickTitle(article.id)">{{article.title}}</span>
+        </div>
+        <div class="col-xs-2">
+          <img class="titleImg" [src]='getImgUrl(article.pictureUrl)'  alt="">
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!--<img src={{'http://www.cu0515.com:8030/wd'+content.pictureUrl}} alt=""/>-->

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script >
+    function getQueryString(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+      console.log(window.location);
+      console.log("r="+r);
+      if (r != null) return unescape(r[2]); return null;
+    }
+    code=(getQueryString("code"));
+    console.log("code="+code);
+  </script>
+</head>
+<body>
+
+</body>
+</html>
