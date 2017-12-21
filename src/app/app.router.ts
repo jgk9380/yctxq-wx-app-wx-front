@@ -4,7 +4,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes, PreloadAllModules} from '@angular/router';
 import {BindComponent} from "./bind/bind.component";
-import {ScanComponent} from "./scan/scan.component";
+
 
 import {AppComponent} from "./app.component";
 
@@ -12,8 +12,8 @@ import {AppComponent} from "./app.component";
 const routes: Routes = [
   {path: '', redirectTo: '/content/list',pathMatch:"full"},
   {path: 'bind', component: BindComponent},
-  {path: 'scan', component: ScanComponent},
   {path: 'content', loadChildren: "app/content/content.module#ContentModule"},
+  {path: 'scan', loadChildren: "app/scan/scan.module#ScanModule"},
   {path: 'test', loadChildren: "app/test/test.module#TestModule"},
   // {path: 'main', component: AppComponent}
 ];

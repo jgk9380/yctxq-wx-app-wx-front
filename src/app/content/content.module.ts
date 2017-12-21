@@ -11,7 +11,7 @@ import {DialogModule,ButtonModule,InputTextareaModule} from 'primeng/primeng';
 import { NewsListComponent } from './news-list/news-list.component';
 import { KnowsledgesListComponent } from './knowsledges-list/knowsledges-list.component';
 import { FavoriteListComponent } from './favorite-list/favorite-list.component'
-import {WxArticleService} from "./article-service";
+import { WxArticleService} from "./article-service";
 import { NewArticleComponent } from './new-article/new-article.component';
 import { NewArticleListComponent } from './new-article-list/new-article-list.component';
 @NgModule({

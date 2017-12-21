@@ -5,8 +5,8 @@ import "rxjs/add/operator/map"
 
 @Injectable()
 export class WxCodeService {
- baseUrl = "http://www.cu0515.com";
-  //baseUrl = "http://127.0.0.1:8888";
+ //baseUrl = "http://www.cu0515.com";
+  baseUrl = "http://127.0.0.1:8888";
   //appCommit中初始化
   private code: string;
   shareId: number;
@@ -15,6 +15,8 @@ export class WxCodeService {
   jsTicketUrl: string;
 
   //private  wxUser:any;//todo app中初始化
+  constructor(private  httpClient: HttpClient) {
+  }
 
   setCode(code: string) {
     this.code = code
@@ -28,8 +30,8 @@ export class WxCodeService {
     if(this.wxUser) return this.wxUser;
     return this.httpClient.get<ResultCode>(url).map(data => data.data)
       .toPromise()
-      .then(x => {this.wxUser = x; return this.wxUser;      }
-      );
+      .then(x => {this.wxUser = x; return this.wxUser;})
+      .catch(x=> alert("app error"+x));
   }
 
   getSharer(): Promise<any> {
@@ -55,8 +57,6 @@ export class WxCodeService {
     return this.code;
   }
 
-  constructor(private  httpClient: HttpClient) {
-  }
 
   getRequestParams() {
     var url = "" + window.location; //获取url中"?"符后的字串

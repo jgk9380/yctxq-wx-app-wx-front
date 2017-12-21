@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 
 import {HttpClient} from "@angular/common/http";
 import "rxjs/add/observable/forkJoin";
-import {ToasterService, ToasterConfig} from "angular2-toaster";
+import {ToasterConfig, ToasterService} from "angular2-toaster";
 import {ActivatedRoute} from "@angular/router";
 import {WxCodeService} from "../wx-code.service";
 
@@ -44,7 +44,10 @@ export class BindComponent implements OnInit {
     //     console.log("wxUser=" + JSON.stringify(this.wxUser));
     //   }
     // );
-    this.wxCodeService.getWxUser().then(x=>{this.wxUser=x;this.newTele=this.wxUser.tele})
+    this.wxCodeService.getWxUser().then(x => {
+      this.wxUser = x;
+      this.newTele = this.wxUser.tele
+    })
   }
 
 
@@ -201,8 +204,8 @@ export class BindComponent implements OnInit {
   }
 
   checkMobile(tele) {
-    if(this.getBStrLen(tele)!=11) return false;
-    if (!(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(tele))){
+    if (this.getBStrLen(tele) != 11) return false;
+    if (!(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(tele))) {
       //alert("不是完整的11位手机号或者正确的手机号前七位");
       //document.mobileform.mobile.focus();
       return false;

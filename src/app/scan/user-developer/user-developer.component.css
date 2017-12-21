@@ -1,0 +1,15 @@
+section .box{padding: 20px 20px}
+section .box>div{background-color: #EEEEEE;padding: 10px;border-radius: 5px;height: 170px;}
+.section-title{font-size: 16px;color:#6E543D;font-weight: bold;}
+.aa{display: block;padding: 10px;color:#DCDCDC;background-color: #fff;}
+.aa>ul>li:first-child{vertical-align: bottom;}
+.aa>ul>li:first-child img{margin-bottom: 7px}
+.aa>ul>li:last-child p:first-child{font-size: 16px;font-weight: bold;}
+.active{background-color: #E7BD86;border-radius: 4px;color:#fff}
+.tab-content .tab-active{display: block;}
+.tab-content{margin-top: 10px;}
+.tab-content p:first-child{color:#363636;font-size: 16px;}
+footer{text-align: center;}
+footer > input{width:80%;height:35px;line-height: 35px;    font-size: 16px; padding-left: 10px;  font-weight: bold;}
+footer .btn-c{width: 80%; padding: 10px; margin-top: 15px; background-color: #DEA653;  color: #fff;  letter-spacing: 1rem;}
+.footer-a{color:#DDB8B7;margin-top: 20px;}

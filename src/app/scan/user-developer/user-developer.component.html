@@ -1,0 +1,49 @@
+<div class="content-box">
+  <header>
+    <a href="">
+      <img class="img-responsive" src="http://122.192.127.40:8030/wd/assets/wx/imgs/ddd.png" alt="">
+    </a>
+  </header>
+  <section>
+    <div class="box text-center">
+      <div>
+        <div class="row">
+          <div class="col-xs-12 section-title">
+            请选择业务类型
+          </div>
+        </div>
+        <div class="row">
+          <ul class="list-inline">
+            <li class="col-xs-12 text-center">
+              <a class="aa active" href="#home" onclick="choose(1)" data-toggle="tab">
+                <ul class="list-inline">
+                  <li><img src="http://122.192.127.40:8030/wd/assets/wx/img/addr.png" alt=""></li>
+                  <li>
+                    <p>腾讯大王卡</p>
+                    <p>（19元/月）</p>
+                  </li>
+                </ul>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane tab-active" id="home">
+            <p>腾讯应用专属流量全国免费</p>
+            <p>其他流量：省内流量1元500MB，省外2元500MB</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <footer>
+    <form>
+      <input type="text" id="tele" placeholder="客户联系电话" [(ngModel)]="tele" name="tele">{{tele}}
+      <div>
+        <button class="btn btn-c" (click)="addBill()">立即提交</button>
+      </div>
+    </form>
+  </footer>
+</div>

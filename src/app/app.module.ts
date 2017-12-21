@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BindComponent } from './bind/bind.component';
-import { ScanComponent } from './scan/scan.component';
+
 import {AppRouterModule} from "./app.router";
 import {HttpClientModule} from "@angular/common/http";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
@@ -12,6 +12,9 @@ import {FormsModule} from "@angular/forms";
 import {ToasterService, ToasterModule} from "angular2-toaster";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {WxCodeService} from "./wx-code.service";
+import {ScanRouteModule} from "./scan/scan.route";
+import {ScanModule} from "./scan/scan.module";
+
 
 
 
@@ -19,7 +22,6 @@ import {WxCodeService} from "./wx-code.service";
   declarations: [
     AppComponent,
     BindComponent,
-    ScanComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,7 @@ import {WxCodeService} from "./wx-code.service";
     HttpClientModule,
     FormsModule,
     ToasterModule,
-
+    ScanModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy, },ToasterService,WxCodeService],//tomcat下路由刷新的问题
 
