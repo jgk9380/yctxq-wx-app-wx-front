@@ -1,9 +1,8 @@
 <div class="container-fluid">
 
   <div class="row">
-    <div class="col-xs-4 col-xs-offset-4 "><h3>发展人信息</h3></div>
+    <div class="col-xs-8 col-xs-offset-2 "><h3>发展人信息</h3></div>
   </div>
-
   <!--<div class="msg_left col-xs-4">-->
   <!--<img src="http://122.192.127.40:8030/wd/assets/wx/img/chengji.png" alt="">-->
   <!--</div>-->
@@ -40,7 +39,7 @@
 
   <div class="form-group ">
     <label class="col-xs-4 control-label">账户银行:</label>
-    <div class="col-xs-7">
+    <div class="col-xs-8">
       <!--<input type="text" class="form-control" id="bank" placeholder="">-->
       <!--<select id="bank">-->
         <!--<option value ="工商银行">工商银行</option>-->
@@ -48,7 +47,7 @@
         <!--<option value="农业银行">农业银行</option>-->
         <!--<option value="建设银行">建设银行</option>-->
       <!--</select>-->
-      <p-autoComplete [(ngModel)]="agent.bankName" name="bankName" [suggestions]="filteredbanks" (completeMethod)="filterBanks($event)" [size]="30"
+      <p-autoComplete [(ngModel)]="agent.bankName" name="bankName" [suggestions]="filteredbanks" (completeMethod)="filterBanks($event)" [size]="20"
                       [minLength]="1" placeholder="请选择银行" [dropdown]="true">
         <ng-template let-ba pTemplate="item">
           <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
@@ -70,7 +69,7 @@
   </div>
 
   <div class="form-group ">
-    <label for="bank-account" class="col-xs-4 control-label">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户:</label>
+    <label for="bank-account" class="col-xs-4 control-label">银行账户:</label>
     <div class="col-xs-7">
       <input type="text" class="form-control" id="bank-account" placeholder="" [(ngModel)]="agent.bankAccount" name="bankAccount">
     </div>

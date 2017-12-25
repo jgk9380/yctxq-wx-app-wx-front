@@ -147,7 +147,7 @@ export class BindComponent implements OnInit {
 
 
   isTeleDisable(): boolean {
-    var isChinaUnion = /^1(3[0-2]|5[56]|8[56]|4[5]|7[6])\d{8}$/;
+    var isChinaUnion = /^1(3[0-2]|5[56]|8[56]|4[5]|7[6]|6[6])\d{8}$/;
     var bool = isChinaUnion.test(this.wxUser.tele);
     //console.log("bool=" + bool);
     return bool;

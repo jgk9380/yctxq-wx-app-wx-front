@@ -11,11 +11,20 @@ export class ScanService {
   openId: string;
 
   constructor(private  httpClient: HttpClient, private  wxCodeService: WxCodeService) {
+
   }
 
 
-  getQrInfo(qrId: number): Promise<any> {
+  getQrInfo(qrId: number): Promise<ResultCode> {
     let url = this.wxCodeService.baseUrl + "/public/wxQrCodes/" + qrId;
+    return this.httpClient.get<ResultCode>(url).map(data => data).toPromise().then(x => {
+      console.log("x=" + JSON.stringify(x));
+      return x;
+    });
+  }
+
+  getEmp(openId:string):Promise<ResultCode>{
+    let url=this.wxCodeService.baseUrl+"/public/empByOpenId/"+openId;
     return this.httpClient.get<ResultCode>(url).map(data => data).toPromise().then(x => {
       console.log("x=" + JSON.stringify(x));
       return x;
@@ -27,20 +36,24 @@ export class ScanService {
     if (!agent.certId || !agent.certName || !agent.wxUserId)
       return false;
 
-    if(!agent.address||!agent.storeName)
+    if (!agent.address || !agent.storeName)
       return false;
 
-    if(!agent.bankName||!agent.bankAccount)
+    if (!agent.bankName || !agent.bankAccount)
       return false;
-    if(!this.validateCertId(agent.certId))
+
+    if (!this.validateCertId(agent.certId))
       return false;
 
     let resultCode = await  this.validateWxUserId(agent.wxUserId);
-
+    //TODO 提示微信号录入错误。
     console.log("validate result=" + resultCode.data);
 
-    if (!resultCode.data)
+    if (!resultCode.data){
+      alert("微信号不正确！");
       return false;
+    }
+
 
     return true;
   }
@@ -49,16 +62,21 @@ export class ScanService {
     return this.httpClient.get<ResultCode>(this.wxCodeService.baseUrl + "/public/validateWxUserId/" + wxUserId).toPromise();
   }
 
+
   //根据手机或昵称查找微信ID
   getWxUserIdByTeleOrNickName(): Promise<any[]> {
     return null;
   }
 
+  addOrderTele(tele:string): Promise<any> {
+    let url=this.wxCodeService.baseUrl+"/public/addOrder";
+    return this.httpClient.post(url,{qrId:this.qrId,openId:this.openId,tele:tele}).toPromise();
+  }
 
   //这个可以验证15位和18位的身份证，并且包含生日和校验位的验证。
   //如果有兴趣，还可以加上身份证所在地的验证，就是前6位有些数字合法有些数字不合法。
 
-   validateCertId(num):boolean {
+  validateCertId(num): boolean {
     num = num.toUpperCase();
     //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。
     if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num))) {
@@ -107,7 +125,6 @@ export class ScanService {
     // }
     // return false;
   }
-
 
 
 }

@@ -54,6 +54,10 @@ export class AgentAddComponent implements OnInit {
       .then(x => {
         if (x.code != 0)
           alert(x.msg);
+        else {
+          alert("代理商信息提交成功！");
+        }
+        //window.close();
       })
       .catch(err => alert("错误:" + JSON.stringify(err)));
   }

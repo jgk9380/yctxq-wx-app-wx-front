@@ -20,8 +20,14 @@ export class ScanHubComponent implements OnInit {
     let openId = this.route.snapshot.paramMap.get('openId');
     this.scanService.openId=openId;
     let wxQrCode: any = await this.scanService.getQrInfo(qrCodeId);
-    if (!wxQrCode.wxUserId)
+    let empInfo:any =await  this.scanService.getEmp(openId);
+
+     if (!wxQrCode.wxUserId&&empInfo.code==0) {
+    // alert(wxQrCode.wxUserId);
+    // alert(empInfo.code);
+    //  if (!wxQrCode.wxUserId) {
       this.router.navigate(['agent-add'], {relativeTo: this.route});
+    }
     else
       this.router.navigate(['user-dev'], {relativeTo: this.route});
   }
