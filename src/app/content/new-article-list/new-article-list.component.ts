@@ -18,7 +18,7 @@ export class NewArticleListComponent implements OnInit {
   async ngOnInit() {
     let wxUser = await  this.wxCodeService.getWxUser();
     //console.log("wxUser=" + JSON.stringify(wxUser));
-    let sharer = await  this.wxCodeService.getSharer();
+    //let sharer = await  this.wxCodeService.getSharer();
     this.route.paramMap.map((params: ParamMap) => {
       return "" + params.get("type")
     }).subscribe(x => {
@@ -40,9 +40,9 @@ export class NewArticleListComponent implements OnInit {
 
   async init() {
     let wxUser = await  this.wxCodeService.getWxUser();
-    let sharer = await  this.wxCodeService.getSharer();
+    //let sharer = await  this.wxCodeService.getSharer();
     console.log("wxUser=" + JSON.stringify(wxUser));
-    console.log("sharer=" + JSON.stringify(sharer));
+    //console.log("sharer=" + JSON.stringify(sharer));
   }
 
   getImgUrl(imgUrl: string): string {
@@ -55,6 +55,6 @@ export class NewArticleListComponent implements OnInit {
 
   clickTitle(id: number) {
     // console.log("clicked "+id);
-    this.router.navigate(['/content/n-article', id]);
+    this.router.navigate(['/content/n-article', id,0]);
   }
 }

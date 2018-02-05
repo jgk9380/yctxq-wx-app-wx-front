@@ -8,6 +8,7 @@ import { UserDeveloperComponent } from './user-developer/user-developer.componen
  import {ScanService} from "./scan.service";
  import { FormsModule }   from '@angular/forms';
  import {AutoCompleteModule} from 'primeng/primeng'
+ import {NumberInput} from "./number-input-director";
 @NgModule({
   imports: [
     CommonModule,
@@ -15,7 +16,7 @@ import { UserDeveloperComponent } from './user-developer/user-developer.componen
     AutoCompleteModule,
     FormsModule,
   ],
-  declarations: [AgentAddComponent, ScanHubComponent, UserDeveloperComponent],
+  declarations: [AgentAddComponent, ScanHubComponent, UserDeveloperComponent,NumberInput],
   providers:[ScanService]
 })
 export class ScanModule { }

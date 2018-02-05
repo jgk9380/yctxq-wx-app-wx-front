@@ -33,14 +33,19 @@ export class ScanService {
 
   async validateAgent(agent: Agent): Promise<boolean> {
     console.log("agent=" + JSON.stringify(agent));
+
     if (!agent.certId || !agent.certName || !agent.wxUserId)
       return false;
+    console.log("NaN:"+isNaN(agent.wxUserId))
+    if(isNaN(agent.wxUserId)) {
+      return false;
+    }
 
     if (!agent.address || !agent.storeName)
       return false;
 
-    if (!agent.bankName || !agent.bankAccount)
-      return false;
+    // if (!agent.bankName || !agent.bankAccount)
+    //   return false;
 
     if (!this.validateCertId(agent.certId))
       return false;

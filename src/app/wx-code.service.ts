@@ -5,17 +5,18 @@ import "rxjs/add/operator/map"
 
 @Injectable()
 export class WxCodeService {
- baseUrl = "http://www.cu0515.com";
+  baseUrl = "http://www.cu0515.com";
   // baseUrl = "http://127.0.0.1:8888";
   //appCommit中初始化
   private code: string;
-  shareId: number;
+  // shareId: number;
   wxUser: any;
-  sharer:any;
-  jsTicketUrl: string;
+  sharer: any;
+  // jsTicketUrl: string;
 
   //private  wxUser:any;//todo app中初始化
   constructor(private  httpClient: HttpClient) {
+
   }
 
   setCode(code: string) {
@@ -23,33 +24,47 @@ export class WxCodeService {
   };
 
   getWxUser(): Promise<any> {
-    console.log("this.getCode()"+this.getCode())
+    //alert("this.getCode()"+this.getCode())
+    if (this.wxUser) return this.wxUser;
     if (!this.getCode()) return Promise.resolve(null);
-    let url=this.getCodeToWxUserUrl() + this.getCode();
-    // console.log("---this.getCode()"+url);
-    if(this.wxUser) return this.wxUser;
+    let url = this.getCodeToWxUserUrl() + this.getCode();
+    //console.log("---this.getCode()"+url);
     return this.httpClient.get<ResultCode>(url).map(data => data.data)
       .toPromise()
-      .then(x => {this.wxUser = x; return this.wxUser;})
-      .catch(x=> alert("app error"+x));
+      .then(x => {
+        this.wxUser = x;
+        return this.wxUser;
+      })
+      .catch(x => alert("app error1" + JSON.stringify(x)));
   }
 
-  getSharer(): Promise<any> {
-    if(this.sharer) return this.sharer;
-    if (!this.getShareId()||this.getShareId()==0) return Promise.resolve(null);
-    let url=this.baseUrl + "/public/article/wxUserByShareId/" + this.getShareId();
+  // getSharer(): Promise<any> {
+  //   if (this.sharer) return this.sharer;
+  //   if (!this.getShareId() || this.getShareId() == 0) return Promise.resolve(null);
+  //   let url = this.baseUrl + "/public/article/wxUserByShareId/" + this.getShareId();
+  //   // console.log("--url="+url)
+  //   return this.httpClient.get<ResultCode>(url).map(data => data.data)
+  //     .toPromise().then(sharer => this.sharer = sharer);
+  // }
+
+  async  getSharer(shareId): Promise<any> {
+    if(!shareId||shareId==0)
+      return  Promise.resolve(null);
+
+    let url = this.baseUrl + "/public/article/wxUserByShareId/" + shareId;
     // console.log("--url="+url)
     return this.httpClient.get<ResultCode>(url).map(data => data.data)
-      .toPromise().then(sharer=>this.sharer=sharer);
+      .toPromise().then(sharer => this.sharer = sharer);
   }
 
-  getShareId(): number {
-    // if (!this.shareId)
-    //   return 9007624;
-    if (!this.shareId)
-       return 0;
-    return this.shareId;
-  }
+
+  // getShareId(): number {
+  //   // if (!this.shareId)
+  //   //   return 9007624;
+  //   if (!this.shareId)
+  //     return 0;
+  //   return this.shareId;
+  // }
 
   getCode(): string {
     // if (!this.code)
@@ -78,12 +93,10 @@ export class WxCodeService {
     console.log("theRequest=" + JSON.stringify(theRequest))
     return theRequest;
   }
-
-
   getCodeToWxUserUrl() {
     // if (!this.getCode() || this.getCode().length == 7)
     //   return this.baseUrl + "/wx/codeToOpenIdTestTest/";
     // else
-    return this.baseUrl + "/wx/codeToOpenId/";
+      return this.baseUrl + "/wx/codeToOpenId/";
   }
 }

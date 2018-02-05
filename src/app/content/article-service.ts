@@ -27,8 +27,6 @@ export class WxArticleService {
     this.httpClient.get<ResultCode>(this.wxCodeService.baseUrl + "/public/article/favoriteList/" + wxUser.openId)
       .subscribe(data1 => {
         this.articleList = data1.data;
-
-
       });
     this.listTitle = "我的收藏";
     this.listType="favorite";

@@ -18,9 +18,9 @@ export class AppComponent implements OnInit,AfterViewInit{
   ngOnInit(){
     //alert("init it");
     this.wxCodeService.setCode(this.wxCodeService.getRequestParams()["code"]);
-    this.wxCodeService.shareId= this.wxCodeService.getRequestParams()["shareId"];
+   //this.wxCodeService.shareId= this.wxCodeService.getRequestParams()["share-id"];
 
-    //console.log("--shareId="+this.wxCodeService.shareId+"  code="+this.wxCodeService.getRequestParams()["code"]);
+    console.log("  code="+this.wxCodeService.getRequestParams()["code"]);
 
     // wx.config({
     //   debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数

@@ -1,15 +1,40 @@
-<p>
-在angular2中，打包后的assets中图片到底应该采用什么路径</p>
-<ul>
-  <li><img src="http://www.cu0515.com/NoAuthService/show_pict/9005456" class="qrCode" /></li>
-  <li><img src="./assets/dwk-hint.jpg"  class="qrHint" /></li>
-</ul>
+<!--<p>-->
+  <!--在angular2中，打包后的assets中图片到底应该采用什么路径</p>-->
+<!--<ul>-->
+  <!--<li><img src="http://www.cu0515.com/NoAuthService/show_pict/9005456" class="qrCode"/></li>-->
+  <!--<li><img src="./assets/dwk-hint.jpg" class="qrHint"/></li>-->
+<!--</ul>-->
 
-<ul>
-  <li><img src="http://www.cu0515.com/NoAuthService/show_pict/9005456" class="qrCode"/></li>
-  <li><img src="./assets/perm-hint.jpg" class="qrHint"/></li>
-</ul>
+<!--<ul>-->
+  <!--<li><img src="http://www.cu0515.com/NoAuthService/show_pict/9005456" class="qrCode"/></li>-->
+  <!--<li><img src="./assets/perm-hint.jpg" class="qrHint"/></li>-->
+<!--</ul>-->
 
+<div class="container-fluid">
+
+  <form class="form-horizontal">
+    <!--<div class="row text-center" style="margin-bottom: 1em;margin-top: 1em;">-->
+    <!--<span class="col-xs-offset-5  col-xs-1">号码绑定</span>-->
+    <!--</div>-->
+    <div class="form-group">
+      <label for="nickname" class="col-xs-4 control-label">&nbsp;昵称：</label>
+      <div class="col-xs-8">
+        <!--<input  class="form-control" id="nicknae" name="nickName" value={{wxUser.nickname}}({{wxUser.id}})) disabled>-->
+        <input class="form-control col-xs-8" id="nickname" name="nickName">
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="tele" class="col-xs-4 control-label">电话号码：</label>
+      <div class="col-xs-8">
+        <input class="form-control" type="number" id="tele" name="tele" placeholder="电话号码">
+      </div>
+    </div>
+
+
+  </form>
+</div>
 
 
 

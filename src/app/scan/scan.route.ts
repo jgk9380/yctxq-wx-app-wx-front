@@ -12,7 +12,6 @@ const routes: Routes = [
         {path: 'user-dev', component: UserDeveloperComponent},
       ]
   }
-
 ];
 
 @NgModule({

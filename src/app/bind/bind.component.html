@@ -1,77 +1,64 @@
-<!--[toasterconfig]="toasterConfig"-->
-
 <div id="bindtele" class="container-fluid" *ngIf="wxUser">
   <toaster-container [toasterconfig]="toasterConfig"></toaster-container>
-  <img class="img-circle center-block" [src]="wxUser?.headimgurl" id="headImg" alt=" "/>
+  <img class="img-circle center-block" [src]="wxUser?.headimgurl" id="headImg" alt=" "  title={{wxUser?.nickname}} />
+  <!--<div  id="nickname" class="center-block">-->
+    <!---->
+  <!--</div>-->
+  <!--[toasterconfig]="toasterConfig"-->
+  <form>
+    <div class="form-group">
+    <!--<label  class="control-label">昵称：{{wxUser.nickname}}<span style="color: #ff6e78">({{wxUser.id}})</span></label>-->
+    <!--&lt;!&ndash;<input class="form-control " id="nickname" name="nickName" value={{wxUser.nickname}}({{wxUser.id}}) disabled>&ndash;&gt;-->
+      <label>{{wxUser?.nickname}}:<span style="color: #ff6e78">{{wxUser?.id}}</span></label>
+    </div>
 
-  <form class="form-horizontal">
-      <!--<div class="row text-center" style="margin-bottom: 1em;margin-top: 1em;">-->
-      <!--<span class="col-xs-offset-5  col-xs-1">号码绑定</span>-->
-      <!--</div>-->
-      <div class="form-group">
-        <label for="nickname" class="col-xs-4 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昵称：</label>
-        <div class="col-xs-8">
-          <!--<input  class="form-control" id="nicknae" name="nickName" value={{wxUser.nickname}}({{wxUser.id}})) disabled>-->
-          <input class="form-control" id="nickname" name="nickName" value={{wxUser.nickname}}({{wxUser.id}}) disabled>
-        </div>
-        <!--<div class="col-xs-3">-->
-          <!--&lt;!&ndash;<input  class="form-control" id="nicknae" name="nickName" value={{wxUser.nickname}}({{wxUser.id}})) disabled>&ndash;&gt;-->
-          <!--<span>({{wxUser.id}})</span>-->
-        <!--</div>-->
+    <div class="form-group">
+      <label for="tele" class=" control-label">电话号码：</label>
+      <input class="form-control" type="number" id="tele" name="tele" placeholder="电话号码" [(ngModel)]="newTele"
+             [disabled]="isTeleDisable()">
+    </div>
+
+    <div class="form-group">
+      <label for="authCode" class="control-label">验证码：</label>
+      <input type="number" class="form-control" id="authCode" name="authCode" [(ngModel)]="authCode" placeholder="验证码">
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-xs-offset-1  col-xs-4">
+        <button class="btn btn-primary" (click)="getAuthCode()" [disabled]="getAuthCodeButtonDisable">
+          {{getAuthCodeButtonTitle}}
+        </button>
       </div>
-
-      <div class="form-group">
-        <label for="tele" class="col-xs-4 control-label">电话号码：</label>
-        <div class="col-xs-8">
-          <input class="form-control" type="number" id="tele" name="tele" placeholder="电话号码" [(ngModel)]="newTele"   [disabled]="isTeleDisable()">
-        </div>
+      <div class="col-xs-offset-1  col-xs-4">
+        <button type="submit" class="btn btn-primary " (click)="bindTele()">绑定号码</button>
       </div>
-
-      <div class="form-group">
-        <label for="authCode" class="col-xs-4 control-label">&nbsp;&nbsp;&nbsp;&nbsp;验证码：</label>
-        <div class="col-xs-4">
-          <input type="number" class="form-control" id="authCode" name="authCode" [(ngModel)]="authCode"  placeholder="验证码">
-        </div>
-        <div class="col-xs-4">
-          <button class="btn btn-primary" (click)="getAuthCode()" [disabled]="getAuthCodeButtonDisable">{{getAuthCodeButtonTitle}}</button>
-          <!--"获取验证码";-->
-        </div>
-      </div>
-
-
-
-      <div class="form-group" >
-        <div class="col-xs-offset-4 col-xs-6">
-          <button type="submit" class="btn-primary btn-lg" (click)="bindTele()">绑定号码</button>
-        </div>
-      </div>
+    </div>
 
     <!--<div style="height: 3px ;width: 100%;background: black"></div>-->
     <!--<div style="height: 1em ;width: 100%;"></div>-->
-      <!--<div class="row text-center" style="margin-bottom: 1em;margin-top: 1em;">-->
-      <!--<span class="col-xs-offset-5  col-xs-1">用户资料</span>-->
-      <!--</div>-->
+    <!--<div class="row text-center" style="margin-bottom: 1em;margin-top: 1em;">-->
+    <!--<span class="col-xs-offset-5  col-xs-1">用户资料</span>-->
+    <!--</div>-->
 
-      <div class="form-group">
-        <label for="userName" class="col-xs-4 control-label">用户姓名：</label>
-        <div class="col-xs-8">
-          <input type="email" class="form-control" id="userName" name="userName" placeholder="用户姓名"
-                 [(ngModel)]="wxUser.longName">
-        </div>
-      </div>
+    <div class="form-group" id="second-form">
+      <label for="userName" class="control-label" id="user-real-name">用户姓名：</label>
+      <input type="email" class="form-control" id="userName" name="userName" placeholder="用户姓名"
+             [(ngModel)]="wxUser.longName">
 
-      <div class="form-group">
-        <label for="address" class="col-xs-4 control-label">邮寄地址：</label>
-        <div class="col-xs-8">
-          <input class="form-control" id="address" name="address" placeholder="邮寄地址" [(ngModel)]="wxUser.mailAddr">
-        </div>
-      </div>
+    </div>
 
-      <div class="form-group">
-        <div class="col-xs-offset-4 col-xs-5">
-          <button type="submit" class="btn-primary btn-lg" (click)="submitUserInfo()">提交资料</button>
-        </div>
+    <div class="form-group">
+      <label for="address" class="control-label">邮寄地址：</label>
+      <input class="form-control" id="address" name="address" placeholder="邮寄地址" [(ngModel)]="wxUser.mailAddr">
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-offset-1  col-xs-4">
+        <button type="submit" class="btn-primary btn" (click)="submitUserInfo()">提交资料</button>
       </div>
+    </div>
+
   </form>
 
 </div>

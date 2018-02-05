@@ -45,7 +45,7 @@ export class AgentAddComponent implements OnInit {
 
     let b = await  this.scanService.validateAgent(this.agent);
     if (!b) {
-      alert("验证错误");
+      alert("验证错误，请检查身份证或微信编码！");
       return;
     }
     this.agent.addOpenId = this.scanService.openId;
@@ -63,6 +63,8 @@ export class AgentAddComponent implements OnInit {
   }
 
 
+
+
 }
 
 export class Agent {
@@ -70,8 +72,8 @@ export class Agent {
   certId: string;
   certName: string;
   address: string;
-  bankName: string;
-  bankAccount: string;
+  // bankName: string;
+  // bankAccount: string;
   storeName: string;
   addOpenId: string;
 }

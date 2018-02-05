@@ -19,7 +19,7 @@ export class BindComponent implements OnInit {
   wxUser: any;
   authCode: string;
   newTele: string;
-  getAuthCodeButtonTitle: string = "获取验证码";
+  getAuthCodeButtonTitle: string = "收验证码";
   getAuthCodeButtonDisable = false;
 
   toasterConfig: ToasterConfig =
@@ -53,15 +53,20 @@ export class BindComponent implements OnInit {
 
   getAuthCode() {
     // alert(this.getBStrLen(this.newTele));
+    if (!this.checkMobile(this.newTele)) {
+      this.toasterService.pop({type: 'error', title: 'error', body: "请输入有效手机号码", showCloseButton: true,});
+      return;
+    }
+    if (!this.newTele) {
+      this.toasterService.pop({type: 'error', title: 'error', body: "请输入电话号码", showCloseButton: true,});
+      return;
+    }
     if (this.wxUser.tele == this.newTele) {
       this.toasterService.pop({type: 'error', title: 'error', body: "无须重新绑定", showCloseButton: true,});
       return;
     }
 
-    if (!this.checkMobile(this.newTele)) {
-      this.toasterService.pop({type: 'error', title: 'error', body: "请输入有效手机号码", showCloseButton: true,});
-      return;
-    }
+
     this.httpClient.get(this.wxCodeService.baseUrl + "/public/smsAuth/" + this.newTele).subscribe(data => {
       var temp: any = data;
       console.log(data);
@@ -110,7 +115,7 @@ export class BindComponent implements OnInit {
 
     var url = "/public/bindTele/" + this.wxUser.id + "/" + this.newTele + "/" + this.authCode;
     console.log("url=" + this.wxCodeService.baseUrl + url);
-    this.httpClient.post(this.wxCodeService.baseUrl + url, {}).subscribe(data => {
+    this.httpClient.post(this.wxCodeService.baseUrl + url, {}).toPromise().then(data => {
       console.log("bind result=" + JSON.stringify(data));
       var result: any = data;
       if (result.code == 0) {
@@ -122,7 +127,15 @@ export class BindComponent implements OnInit {
           body: '号码绑定成功',
           showCloseButton: true,
         });
+      }else{
+        this.toasterService.pop({
+          type: 'success',
+          title: 'success',
+          body: 'error：'+result.code+':'+result.msg,
+          showCloseButton: true,
+        });
       }
+
     });
   }
 
